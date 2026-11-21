@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLTES 2027 | International Workshop on Federated Learning Technologies and Emerging Systems</title>
+  <meta name="description" content="International Workshop on Federated Learning Technologies and Emerging Systems (FLTES 2027), held with NGCS 2027 on March 15–18, 2027 in San Antonio, Texas, USA. Call for papers, important dates, organizing committee, and submission details." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --teal-900: #073b35;
+      --teal-800: #0b5248;
+      --teal: #12806f;
+      --teal-500: #19a08b;
+      --mint: #c9f0e2;
+      --mint-100: #e6f8f1;
+      --mint-50: #f3fbf8;
+      --amber: #f08a3c;
+      --amber-600: #d26a1d;
+      --amber-100: #fdeedf;
+      --ink: #15232a;
+      --muted: #55676e;
+      --line: rgba(18, 128, 111, 0.18);
+      --white: #ffffff;
+      --shadow: 0 20px 50px -22px rgba(7, 59, 53, 0.35);
+      --head: "Space Grotesk", "Inter", system-ui, sans-serif;
+      --body: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      font-family: var(--body);
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: var(--head); color: var(--teal-900); line-height: 1.12; letter-spacing: -0.02em; }
+    .wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- header ---------- */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: saturate(160%) blur(14px);
+      -webkit-backdrop-filter: saturate(160%) blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--head); font-weight: 700; color: var(--teal-900); font-size: 1.08rem; }
+    .brand svg { flex: none; }
+    .nav-links { display: flex; align-items: center; gap: 4px; font-size: 0.92rem; font-weight: 500; }
+    .nav-links a { padding: 8px 12px; border-radius: 999px; color: var(--teal-800); transition: background .2s, color .2s; }
+    .nav-links a:hover { background: var(--mint-100); color: var(--teal); }
+    .nav-links a.nav-cta { background: var(--teal); color: var(--white); margin-left: 6px; font-weight: 600; }
+    .nav-links a.nav-cta:hover { background: var(--teal-800); color: var(--white); }
+    .menu-btn {
+      display: none; align-items: center; gap: 8px;
+      background: var(--mint-100); color: var(--teal-900);
+      border: 1px solid var(--line); border-radius: 999px;
+      padding: 8px 14px; font: 600 0.9rem var(--body); cursor: pointer;
+    }
+    .menu-btn span { display: block; width: 16px; height: 2px; background: currentColor; position: relative; }
+    .menu-btn span::before, .menu-btn span::after { content: ""; position: absolute; left: 0; width: 16px; height: 2px; background: currentColor; }
+    .menu-btn span::before { top: -5px; } .menu-btn span::after { top: 5px; }
+
+    /* ---------- buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 24px; border-radius: 999px; font-weight: 600; font-size: 0.98rem;
+      background: var(--teal); color: var(--white); border: 2px solid var(--teal);
+      transition: transform .2s, background .2s, box-shadow .2s;
+      box-shadow: 0 12px 26px -12px rgba(18, 128, 111, 0.8);
+    }
+    .btn:hover { transform: translateY(-2px); background: var(--teal-800); border-color: var(--teal-800); }
+    .btn-ghost { background: transparent; color: var(--teal-900); border-color: var(--mint); box-shadow: none; }
+    .btn-ghost:hover { background: var(--mint-100); border-color: var(--teal-500); color: var(--teal-900); }
+    .btn-warm { background: var(--amber); border-color: var(--amber); color: #2b1505; box-shadow: 0 12px 26px -12px rgba(210, 106, 29, 0.9); }
+    .btn-warm:hover { background: #ffa25c; border-color: #ffa25c; }
+
+    /* ---------- hero ---------- */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 72px 0 40px;
+      background:
+        radial-gradient(900px 500px at 85% 20%, rgba(201, 240, 226, 0.85), transparent 65%),
+        radial-gradient(600px 400px at 5% 90%, rgba(253, 238, 223, 0.9), transparent 60%),
+        var(--mint-50);
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(18, 128, 111, 0.16) 1.2px, transparent 1.2px);
+      background-size: 22px 22px;
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+              mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+    }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px 7px 10px; border-radius: 999px;
+      background: var(--white); border: 1px solid var(--line);
+      font-size: 0.85rem; font-weight: 600; color: var(--teal-800);
+      margin-bottom: 22px;
+    }
+    .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px var(--amber-100); }
+    .hero h1 { font-size: clamp(2.05rem, 4.4vw, 3.6rem); margin-bottom: 22px; }
+    .hero h1 .acr { color: var(--teal); }
+    .hero p { color: var(--muted); font-size: 1.08rem; max-width: 640px; margin-bottom: 16px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+
+    .fed { width: 100%; max-width: 520px; height: auto; display: block; margin: 0 auto; overflow: visible; }
+    .fed .edge { stroke: var(--teal); stroke-opacity: .28; stroke-width: 2; stroke-dasharray: 4 7; }
+    .fed .orbit { fill: none; stroke: var(--teal); stroke-opacity: .18; stroke-width: 1.5; stroke-dasharray: 2 10; transform-origin: 260px 260px; animation: spin 60s linear infinite; }
+    .fed .client circle.ring { fill: var(--white); stroke: var(--teal); stroke-width: 2; }
+    .fed .client text, .fed .server text { font-family: var(--head); font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+    .fed .client text { font-size: 13px; fill: var(--teal-900); }
+    .fed .server text { font-size: 15px; fill: var(--white); }
+    .fed .halo { fill: var(--teal); opacity: .12; transform-origin: 260px 260px; animation: pulse 3.2s ease-in-out infinite; }
+    .fed .pkt { opacity: 0; }
+    .fed .up { fill: var(--amber); animation: up 3.6s ease-in-out infinite; }
+    .fed .down { fill: var(--teal); animation: down 3.6s ease-in-out infinite; }
+    @keyframes up {
+      0% { transform: translate(var(--x), var(--y)); opacity: 0; }
+      8% { opacity: 1; }
+      42% { transform: translate(260px, 260px); opacity: 1; }
+      48%, 100% { transform: translate(260px, 260px); opacity: 0; }
+    }
+    @keyframes down {
+      0%, 50% { transform: translate(260px, 260px); opacity: 0; }
+      56% { opacity: 1; }
+      92% { transform: translate(var(--x), var(--y)); opacity: 1; }
+      100% { transform: translate(var(--x), var(--y)); opacity: 0; }
+    }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: .12; } 50% { transform: scale(1.25); opacity: .04; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .fed-legend { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; font-size: 0.82rem; color: var(--muted); margin-top: 6px; }
+    .fed-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .fed-legend i { width: 9px; height: 9px; border-radius: 50%; }
+
+    /* stat strip */
+    .stats {
+      position: relative; margin-top: 44px;
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      background: var(--white); border: 1px solid var(--line); border-radius: 18px;
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .stat { padding: 18px 20px; border-left: 1px solid var(--line); min-width: 0; }
+    .stat:first-child { border-left: 0; }
+    .stat small { display: block; font-size: 0.74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+    .stat b { font-family: var(--head); font-weight: 600; color: var(--teal-900); font-size: 1.02rem; line-height: 1.3; display: block; }
+
+    /* ---------- sections ---------- */
+    section { padding: 88px 0; }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--teal);
+    }
+    .kicker::before { content: ""; width: 26px; height: 2px; background: var(--amber); border-radius: 2px; }
+    .head { max-width: 820px; margin-bottom: 40px; }
+    .head h2 { font-size: clamp(1.75rem, 3.2vw, 2.6rem); margin: 12px 0 16px; }
+    .head p { color: var(--muted); font-size: 1.04rem; }
+    .head p + p { margin-top: 14px; }
+
+    /* CFP clusters */
+    .clusters { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; position: relative; }
+    .cluster {
+      position: relative; border-radius: 24px; padding: 32px;
+      background: var(--mint-50); border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .cluster.b { background: #fff8f1; border-color: rgba(240, 138, 60, 0.28); }
+    .cluster::after {
+      content: ""; position: absolute; right: -40px; top: -40px; width: 170px; height: 170px; border-radius: 50%;
+      border: 2px dashed rgba(18, 128, 111, 0.18);
+    }
+    .cluster.b::after { border-color: rgba(240, 138, 60, 0.25); }
+    .cluster-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 10px;
+    }
+    .cluster.b .cluster-tag { color: var(--amber-600); }
+    .cluster-tag i { width: 10px; height: 10px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px rgba(18,128,111,.14); }
+    .cluster.b .cluster-tag i { box-shadow: 0 0 0 4px rgba(240,138,60,.18); }
+    .cluster h3 { font-size: 1.5rem; margin-bottom: 14px; }
+    .cluster p { color: var(--muted); }
+    .cluster h4 { font-family: var(--head); font-size: 0.95rem; color: var(--teal-900); margin: 24px 0 12px; font-weight: 600; }
+    .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+    .chips li {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 14px; border-radius: 999px;
+      background: var(--white); border: 1px solid rgba(18, 128, 111, 0.25);
+      color: var(--teal-900); font-size: 0.9rem; font-weight: 500; line-height: 1.35;
+    }
+    .chips li::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+    .cluster.b .chips li { border-color: rgba(240, 138, 60, 0.35); }
+    .cluster.b .chips li::before { background: var(--amber); }
+
+    /* template banner */
+    #paper-template { padding: 0; }
+    .banner {
+      display: flex; align-items: center; gap: 24px; justify-content: space-between;
+      padding: 22px 28px; border-radius: 18px;
+      background: var(--teal-900); color: var(--white);
+      background-image: linear-gradient(90deg, rgba(18,128,111,.6), transparent 60%);
+    }
+    .banner-icon { flex: none; width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,.1); }
+    .banner-text { flex: 1; min-width: 0; }
+    .banner-text .kicker { color: var(--mint); font-size: 0.72rem; }
+    .banner h2 { color: var(--white); font-size: 1.2rem; margin: 4px 0 6px; }
+    .banner p { color: rgba(255,255,255,.8); font-size: 0.94rem; }
+    .banner p + p { margin-top: 4px; }
+    .banner .btn { flex: none; background: var(--mint); color: var(--teal-900); border-color: var(--mint); box-shadow: none; }
+    .banner .btn:hover { background: var(--white); border-color: var(--white); }
+
+    /* dates timeline */
+    .rounds { list-style: none; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding-top: 8px; }
+    .rounds::before {
+      content: ""; position: absolute; left: 12.5%; right: 12.5%; top: 36px; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--teal-500) 70%, var(--amber));
+      border-radius: 3px;
+    }
+    .round { position: relative; text-align: center; }
+    .round .node {
+      position: relative; z-index: 1; width: 58px; height: 58px; margin: 0 auto 18px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--white); border: 3px solid var(--teal);
+      font-family: var(--head); font-weight: 700; color: var(--teal); font-size: 1.05rem;
+      box-shadow: 0 0 0 8px var(--mint-100);
+    }
+    .round.final .node { background: var(--amber); border-color: var(--amber); color: #2b1505; box-shadow: 0 0 0 8px var(--amber-100); }
+    .round small { display: block; font-size: 0.74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+    .round.final small { color: var(--amber-600); }
+    .round strong { display: block; font-family: var(--head); font-size: 1.12rem; color: var(--teal-900); margin: 4px 0 8px; }
+    .round span {
+      display: inline-block; padding: 5px 14px; border-radius: 999px;
+      background: var(--mint-100); color: var(--teal-800); font-weight: 600; font-size: 0.92rem;
+    }
+    .round.final span { background: var(--amber-100); color: #8a420d; }
+
+    /* venue */
+    #venue { background: var(--mint-50); }
+    .venue-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; align-items: stretch; }
+    .map-card {
+      position: relative; border-radius: 24px; overflow: hidden; min-height: 360px;
+      background: #e9f5f0; border: 1px solid var(--line); box-shadow: var(--shadow);
+    }
+    .map-card svg.map { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .map-info {
+      position: absolute; left: 18px; right: 18px; bottom: 18px;
+      background: rgba(255,255,255,.95); border-radius: 18px; padding: 18px 20px;
+      border: 1px solid var(--line);
+    }
+    .map-info h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .meta { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; font-size: 0.92rem; }
+    .meta li { min-width: 0; }
+    .meta b { display: block; font-size: 0.72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); font-weight: 700; }
+    .meta span { color: var(--teal-900); font-weight: 500; }
+    .venue-side {
+      border-radius: 24px; padding: 32px; background: var(--white); border: 1px solid var(--line);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .venue-side h3 { font-size: 1.35rem; margin-bottom: 14px; }
+    .venue-side p { color: var(--muted); }
+    .venue-side p + p { margin-top: 14px; }
+    .inline-link { color: var(--teal); font-weight: 600; border-bottom: 1.5px solid rgba(18,128,111,.35); }
+    .inline-link:hover { border-bottom-color: var(--teal); }
+
+    /* committee */
+    .nodes { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; justify-items: center; }
+    .nodes::before {
+      content: ""; position: absolute; left: 16%; right: 16%; top: 50%; border-top: 2px dashed rgba(18,128,111,.3);
+    }
+    .cnode {
+      position: relative; width: 100%; max-width: 270px; aspect-ratio: 1; border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+      padding: 34px; background: var(--white); border: 2px solid var(--mint);
+      box-shadow: var(--shadow), inset 0 0 0 10px var(--mint-50);
+    }
+    .cnode.mid { border-color: rgba(240,138,60,.45); box-shadow: var(--shadow), inset 0 0 0 10px #fff8f1; }
+    .cnode .ico { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--mint-100); margin-bottom: 12px; }
+    .cnode.mid .ico { background: var(--amber-100); }
+    .cnode h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .cnode p { color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+
+    /* submit band */
+    #submit {
+      padding: 80px 0;
+      background:
+        radial-gradient(500px 300px at 90% 10%, rgba(240,138,60,.35), transparent 70%),
+        linear-gradient(120deg, var(--teal-900) 0%, var(--teal) 60%, var(--teal-500) 100%);
+      color: var(--white); position: relative; overflow: hidden;
+    }
+    #submit::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,.14) 1.2px, transparent 1.2px);
+      background-size: 22px 22px;
+    }
+    .submit-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    #submit h2 { color: var(--white); font-size: clamp(1.9rem, 3.4vw, 2.8rem); margin-bottom: 12px; }
+    #submit p { color: rgba(255,255,255,.86); max-width: 680px; }
+    #submit .kicker { color: var(--mint); }
+    .inline-link.light { color: var(--white); border-bottom-color: rgba(255,255,255,.55); overflow-wrap: anywhere; }
+
+    footer { padding: 30px 0; text-align: center; color: var(--muted); font-size: 0.92rem; background: var(--white); border-top: 1px solid var(--line); }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .fed { max-width: 420px; }
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .stat:nth-child(4) { border-left: 0; }
+      .stat:nth-child(n+4) { border-top: 1px solid var(--line); }
+      .clusters, .venue-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 860px) {
+      .menu-btn { display: inline-flex; }
+      .nav { flex-wrap: wrap; }
+      .nav-links {
+        display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 2px; padding: 0 0 14px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 12px; border-radius: 12px; }
+      .nav-links a.nav-cta { margin: 6px 0 0; text-align: center; }
+      .no-js .nav-links { display: flex; flex-direction: row; flex-wrap: wrap; }
+      .no-js .menu-btn { display: none; }
+    }
+    @media (max-width: 760px) {
+      .rounds { grid-template-columns: 1fr; gap: 26px; }
+      .rounds::before { left: 28px; right: auto; top: 30px; bottom: 30px; width: 3px; height: auto; background: linear-gradient(180deg, var(--teal), var(--teal-500) 70%, var(--amber)); }
+      .round { display: grid; grid-template-columns: 58px 1fr; column-gap: 20px; align-items: center; text-align: left; }
+      .round .node { margin: 0; grid-row: span 3; }
+      .round strong { margin: 2px 0 6px; }
+      .round span { justify-self: start; }
+      .nodes { grid-template-columns: 1fr; gap: 22px; }
+      .nodes::before { left: 50%; right: auto; top: 10%; bottom: 10%; border-top: 0; border-left: 2px dashed rgba(18,128,111,.3); }
+      .cnode { max-width: 250px; }
+      .submit-inner, .banner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 600px) {
+      .wrap { padding: 0 16px; }
+      section { padding: 64px 0; }
+      #paper-template { padding: 0; }
+      .hero { padding: 44px 0 32px; }
+      .hero p { font-size: 1rem; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat { border-left: 0; border-top: 1px solid var(--line); padding: 14px 16px; }
+      .stat:nth-child(1), .stat:nth-child(2) { border-top: 0; }
+      .stat:nth-child(even) { border-left: 1px solid var(--line); }
+      .stat:last-child { grid-column: 1 / -1; border-left: 0; }
+      .cluster, .venue-side { padding: 24px 20px; }
+      .chips li { font-size: 0.86rem; }
+      .banner { padding: 22px 20px; }
+      .map-card { min-height: 0; display: flex; flex-direction: column; }
+      .map-card svg.map { position: relative; inset: auto; height: 200px; flex: none; }
+      .map-info { position: relative; left: auto; right: auto; bottom: auto; z-index: 1; margin: -28px 12px 12px; }
+      .meta { grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .hero-actions .btn { width: auto; flex: 1 1 200px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .fed .pkt { display: none; }
+      .fed .halo, .fed .orbit { animation: none; }
+      .btn, .nav-links a { transition: none; }
+    }
+  </style>
+</head>
+<body class="no-js">
+  <header>
+    <div class="wrap nav">
+      <a href="#top" class="brand" aria-label="FLTES Workshop home">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <g stroke="#12806f" stroke-width="1.6" stroke-opacity=".6"><path d="M17 17 5 7M17 17l12-10M17 17 5 27M17 17l12 10"/></g>
+          <circle cx="17" cy="17" r="7" fill="#12806f"/>
+          <circle cx="5" cy="7" r="3.5" fill="#fff" stroke="#12806f" stroke-width="1.6"/>
+          <circle cx="29" cy="7" r="3.5" fill="#fff" stroke="#12806f" stroke-width="1.6"/>
+          <circle cx="5" cy="27" r="3.5" fill="#fff" stroke="#12806f" stroke-width="1.6"/>
+          <circle cx="29" cy="27" r="3.5" fill="#f08a3c"/>
+        </svg>
+        <span>FLTES 2027</span>
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span aria-hidden="true"></span>Menu</button>
+      <nav class="nav-links" id="site-nav" aria-label="Main navigation">
+        <a href="#cfp">Call for Papers</a>
+        <a href="#paper-template">Template</a>
+        <a href="#dates">Important Dates</a>
+        <a href="#venue">Venue</a>
+        <a href="#committee">Committee</a>
+        <a href="../../index.php">NGCS 2027</a>
+        <a class="nav-cta" href="https://conferences.sparcly.ai/NGCS2027" target="_blank" rel="noopener noreferrer">Submit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow"><i></i>Workshop co-located with NGCS 2027</span>
+            <h1>The International Workshop on Federated Learning Technologies and Emerging Systems <span class="acr">(FLTES 2027)</span></h1>
+            <p>
+              FLTES 2027 is organized with the International Conference on Next Generation Cyber Security (NGCS 2027), taking place on March 15–18, 2027 in San Antonio, Texas, USA.
+            </p>
+            <p>
+              The workshop brings together researchers and practitioners building federated and decentralized learning systems, with a particular focus on the privacy, security, robustness, and deployment challenges of training models across many parties without centralizing their data.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="https://conferences.sparcly.ai/NGCS2027" target="_blank" rel="noopener noreferrer">Submit Your Paper</a>
+              <a class="btn btn-ghost" href="#cfp">View Call for Papers</a>
+            </div>
+          </div>
+
+          <div>
+            <svg class="fed" viewBox="0 0 520 520" role="img" aria-label="Illustration of a federated learning network: a central aggregator exchanging model updates with eight client nodes">
+              <defs>
+                <radialGradient id="srv" cx="40%" cy="35%" r="70%">
+                  <stop offset="0" stop-color="#19a08b"/>
+                  <stop offset="1" stop-color="#073b35"/>
+                </radialGradient>
+              </defs>
+              <circle class="orbit" cx="260" cy="260" r="228"/>
+              <circle class="orbit" cx="260" cy="260" r="120" style="animation-direction: reverse;"/>
+              <g>
+                <line class="edge" x1="260" y1="260" x2="450" y2="260"/>
+                <line class="edge" x1="260" y1="260" x2="394" y2="394"/>
+                <line class="edge" x1="260" y1="260" x2="260" y2="450"/>
+                <line class="edge" x1="260" y1="260" x2="126" y2="394"/>
+                <line class="edge" x1="260" y1="260" x2="70" y2="260"/>
+                <line class="edge" x1="260" y1="260" x2="126" y2="126"/>
+                <line class="edge" x1="260" y1="260" x2="260" y2="70"/>
+                <line class="edge" x1="260" y1="260" x2="394" y2="126"/>
+              </g>
+              <!-- model update packets: amber = local update to server, teal = global model broadcast -->
+              <g>
+                <circle class="pkt up" r="6" style="--x:450px;--y:260px;animation-delay:0s"/>
+                <circle class="pkt up" r="6" style="--x:394px;--y:394px;animation-delay:-.45s"/>
+                <circle class="pkt up" r="6" style="--x:260px;--y:450px;animation-delay:-.9s"/>
+                <circle class="pkt up" r="6" style="--x:126px;--y:394px;animation-delay:-.2s"/>
+                <circle class="pkt up" r="6" style="--x:70px;--y:260px;animation-delay:-.65s"/>
+                <circle class="pkt up" r="6" style="--x:126px;--y:126px;animation-delay:-1.1s"/>
+                <circle class="pkt up" r="6" style="--x:260px;--y:70px;animation-delay:-.3s"/>
+                <circle class="pkt up" r="6" style="--x:394px;--y:126px;animation-delay:-.8s"/>
+                <circle class="pkt down" r="5" style="--x:450px;--y:260px;animation-delay:0s"/>
+                <circle class="pkt down" r="5" style="--x:394px;--y:394px;animation-delay:-.45s"/>
+                <circle class="pkt down" r="5" style="--x:260px;--y:450px;animation-delay:-.9s"/>
+                <circle class="pkt down" r="5" style="--x:126px;--y:394px;animation-delay:-.2s"/>
+                <circle class="pkt down" r="5" style="--x:70px;--y:260px;animation-delay:-.65s"/>
+                <circle class="pkt down" r="5" style="--x:126px;--y:126px;animation-delay:-1.1s"/>
+                <circle class="pkt down" r="5" style="--x:260px;--y:70px;animation-delay:-.3s"/>
+                <circle class="pkt down" r="5" style="--x:394px;--y:126px;animation-delay:-.8s"/>
+              </g>
+              <g class="client">
+                <circle class="ring" cx="450" cy="260" r="27"/><text x="450" y="260">C1</text>
+                <circle class="ring" cx="394" cy="394" r="27"/><text x="394" y="394">C2</text>
+                <circle class="ring" cx="260" cy="450" r="27"/><text x="260" y="450">C3</text>
+                <circle class="ring" cx="126" cy="394" r="27"/><text x="126" y="394">C4</text>
+                <circle class="ring" cx="70" cy="260" r="27"/><text x="70" y="260">C5</text>
+                <circle class="ring" cx="126" cy="126" r="27"/><text x="126" y="126">C6</text>
+                <circle class="ring" cx="260" cy="70" r="27"/><text x="260" y="70">C7</text>
+                <circle class="ring" cx="394" cy="126" r="27"/><text x="394" y="126">C8</text>
+              </g>
+              <g class="server">
+                <circle class="halo" cx="260" cy="260" r="72"/>
+                <circle cx="260" cy="260" r="52" fill="url(#srv)"/>
+                <circle cx="260" cy="260" r="52" fill="none" stroke="#c9f0e2" stroke-width="2" stroke-opacity=".6"/>
+                <text x="260" y="252">Global</text>
+                <text x="260" y="270" style="font-size:12px;fill:#c9f0e2">model</text>
+              </g>
+            </svg>
+            <div class="fed-legend" aria-hidden="true">
+              <span><i style="background:#f08a3c"></i>local updates</span>
+              <span><i style="background:#12806f"></i>aggregated model</span>
+            </div>
+          </div>
+        </div>
+
+        <dl class="stats" aria-label="Workshop at a glance">
+          <div class="stat"><dt><small>Acronym</small></dt><dd><b>FLTES 2027</b></dd></div>
+          <div class="stat"><dt><small>With</small></dt><dd><b>NGCS 2027</b></dd></div>
+          <div class="stat"><dt><small>Date</small></dt><dd><b>March 15–18, 2027</b></dd></div>
+          <div class="stat"><dt><small>Venue</small></dt><dd><b>San Antonio, Texas, USA</b></dd></div>
+          <div class="stat"><dt><small>Format</small></dt><dd><b>Details to be announced</b></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ================= CFP ================= -->
+    <section id="cfp">
+      <div class="wrap">
+        <div class="head">
+          <span class="kicker">Call for Papers</span>
+          <h2>Submit original work on secure, private, and scalable federated learning for emerging systems.</h2>
+          <p>
+            FLTES 2027 invites researchers, practitioners, and industry experts to submit original contributions on federated learning and its role in emerging systems. As learning moves to hospitals, vehicles, phones, factories, and critical infrastructure, data increasingly stays where it is produced. Federated learning makes collaboration possible under these constraints, but it also introduces new attack surfaces, privacy risks, heterogeneity problems, and operational challenges.
+          </p>
+          <p>
+            The workshop welcomes theoretical, empirical, experimental, and applied work, including full research papers, short papers, position papers, case studies, tool demonstrations, datasets, benchmarks, and lessons learned from real-world deployments.
+          </p>
+          <p><strong>Scope.</strong> FLTES 2027 focuses on two closely connected research directions.</p>
+        </div>
+
+        <div class="clusters">
+          <article class="cluster a">
+            <span class="cluster-tag"><i></i>Direction 01</span>
+            <h3>Trustworthy federated learning</h3>
+            <p>
+              The first is <strong>trustworthy federated learning</strong>, covering methods that protect federated systems against poisoning, backdoors, free-riding, inference attacks, and gradient leakage, together with privacy-enhancing techniques such as differential privacy, secure aggregation, homomorphic encryption, and trusted execution environments.
+            </p>
+            <h4>Topics of interest</h4>
+            <ul class="chips">
+              <li>Poisoning, backdoor, and Byzantine-robust federated learning</li>
+              <li>Gradient leakage, membership inference, and privacy attacks on FL</li>
+              <li>Secure aggregation, homomorphic encryption, and MPC for FL</li>
+              <li>Differential privacy and privacy accounting in federated settings</li>
+              <li>Federated learning with trusted execution environments</li>
+              <li>Heterogeneity, non-IID data, personalization, and fairness in FL</li>
+              <li>Incentives, auditing, unlearning, and governance of federations</li>
+            </ul>
+          </article>
+
+          <article class="cluster b">
+            <span class="cluster-tag"><i></i>Direction 02</span>
+            <h3>Federated learning for emerging systems</h3>
+            <p>
+              The second direction is <strong>federated learning for emerging systems</strong>, focusing on how federated, split, and decentralized learning can be engineered and deployed at scale across edge, IoT, 6G, vehicular, healthcare, industrial, and cyber-physical environments, including federated foundation models, federated LLM fine-tuning, and federated approaches to cyber threat detection.
+            </p>
+            <h4>Topics of interest</h4>
+            <ul class="chips">
+              <li>Communication-efficient, asynchronous, and hierarchical FL</li>
+              <li>Federated fine-tuning of foundation models and LLMs</li>
+              <li>Decentralized, peer-to-peer, split, and blockchain-based learning</li>
+              <li>Federated learning for intrusion detection and threat intelligence</li>
+              <li>FL for edge, IoT, 6G, vehicular, and cyber-physical systems</li>
+              <li>Federated learning in healthcare, finance, and industrial settings</li>
+              <li>Frameworks, benchmarks, testbeds, and reproducibility for FL</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TEMPLATE ================= -->
+    <section id="paper-template">
+      <div class="wrap">
+        <div class="banner" role="note">
+          <div class="banner-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9f0e2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+          </div>
+          <div class="banner-text">
+            <span class="kicker">Paper Preparation · Mandatory conference template</span>
+            <h2>Use of the conference template is mandatory.</h2>
+            <p>All papers submitted to FLTES 2027 must be prepared using the official NGCS 2027 conference template. This requirement applies to every submission.</p>
+            <p>Before submitting, download the appropriate Word or LaTeX template and follow all formatting instructions provided on the conference submission page.</p>
+          </div>
+          <a class="btn" href="../../submission.php">Open Conference Template</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DATES ================= -->
+    <section id="dates">
+      <div class="wrap">
+        <div class="head">
+          <span class="kicker">Important Dates</span>
+          <h2>Key deadlines, round by round</h2>
+          <p>All deadlines are 23:59 AoE (Anywhere on Earth). Workshop deadlines will be announced soon.</p>
+        </div>
+
+        <ol class="rounds">
+          <li class="round">
+            <div class="node">R1</div>
+            <small>Round 1</small>
+            <strong>Paper Submission</strong>
+            <span>TBD</span>
+          </li>
+          <li class="round">
+            <div class="node">R2</div>
+            <small>Round 2</small>
+            <strong>Author Notification</strong>
+            <span>TBD</span>
+          </li>
+          <li class="round">
+            <div class="node">R3</div>
+            <small>Round 3</small>
+            <strong>Camera-Ready Due</strong>
+            <span>TBD</span>
+          </li>
+          <li class="round final">
+            <div class="node">R4</div>
+            <small>Round 4</small>
+            <strong>Conference &amp; Workshop</strong>
+            <span>March 15–18, 2027</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= VENUE ================= -->
+    <section id="venue">
+      <div class="wrap">
+        <div class="head">
+          <span class="kicker">Venue</span>
+          <h2>Hosted in San Antonio, Texas</h2>
+          <p>
+            FLTES 2027 will be held with NGCS 2027 in San Antonio, Texas, USA. The exact venue will be announced on the main conference website.
+          </p>
+        </div>
+
+        <div class="venue-grid">
+          <div class="map-card">
+            <svg class="map" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="600" height="420" fill="#e9f5f0"/>
+              <g fill="#d7eee5">
+                <rect x="30" y="30" width="120" height="80" rx="8"/>
+                <rect x="180" y="20" width="90" height="110" rx="8"/>
+                <rect x="420" y="40" width="150" height="70" rx="8"/>
+                <rect x="40" y="250" width="100" height="120" rx="8"/>
+                <rect x="440" y="230" width="130" height="90" rx="8"/>
+              </g>
+              <g stroke="#ffffff" stroke-width="14" stroke-linecap="round" fill="none">
+                <path d="M-10 160 H610"/>
+                <path d="M300 -10 V430"/>
+                <path d="M-10 60 L200 200 L420 380 L610 420"/>
+              </g>
+              <g stroke="#ffffff" stroke-width="6" fill="none" opacity=".9">
+                <path d="M160 -10 V430"/>
+                <path d="M400 -10 V430"/>
+                <path d="M-10 230 H610"/>
+                <path d="M-10 330 H610"/>
+              </g>
+              <path d="M-20 120 C 90 140, 150 60, 250 110 S 380 260, 470 200 S 560 120, 620 150" stroke="#9fd6c2" stroke-width="12" fill="none" stroke-linecap="round"/>
+              <circle cx="300" cy="160" r="70" fill="#12806f" opacity=".08"/>
+              <circle cx="300" cy="160" r="40" fill="#12806f" opacity=".12"/>
+              <g transform="translate(300 160)">
+                <ellipse cx="0" cy="4" rx="14" ry="5" fill="#073b35" opacity=".2"/>
+                <path d="M0 0 C -6 -14, -26 -26, -26 -46 A26 26 0 0 1 26 -46 C 26 -26, 6 -14, 0 0 Z" fill="#f08a3c"/>
+                <circle cx="0" cy="-46" r="10" fill="#ffffff"/>
+              </g>
+            </svg>
+            <div class="map-info">
+              <h3>Location</h3>
+              <ul class="meta">
+                <li><b>Conference</b><span>NGCS 2027</span></li>
+                <li><b>City</b><span>San Antonio, Texas, USA</span></li>
+                <li><b>Nearest airport</b><span>San Antonio International (SAT)</span></li>
+                <li><b>Venue</b><span>To be announced</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="venue-side">
+            <h3>Conference Experience</h3>
+            <p>
+              The workshop runs alongside the NGCS 2027 main program, giving participants access to technical sessions, keynotes, discussions, and networking with the wider next-generation cyber security community.
+            </p>
+            <p>
+              Travel guidance, accommodation, and venue details are published on the <a class="inline-link" href="../../venue.php">NGCS 2027 venue page</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMMITTEE ================= -->
+    <section id="committee">
+      <div class="wrap">
+        <div class="head">
+          <span class="kicker">Organizing Committee</span>
+          <h2>Workshop leadership</h2>
+        </div>
+
+        <div class="nodes">
+          <div class="cnode">
+            <div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12806f" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div>
+            <h3>Workshop Chairs</h3>
+            <p>To be announced soon.</p>
+          </div>
+          <div class="cnode mid">
+            <div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d26a1d" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="12" cy="21" r="1.5"/><path d="M6 7l4 3M18 7l-4 3M12 15v4"/></svg></div>
+            <h3>TPC Chairs</h3>
+            <p>To be announced soon.</p>
+          </div>
+          <div class="cnode">
+            <div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12806f" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2 20c1-3 3.5-5 6-5s5 2 6 5M13 15.5c1-.4 2.2-.5 4-.5 2.5 0 4.5 2 5 5"/></svg></div>
+            <h3>Program Committee</h3>
+            <p>Program Committee members will be announced soon.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SUBMIT ================= -->
+    <section id="submit">
+      <div class="wrap submit-inner">
+        <div>
+          <span class="kicker">Submission</span>
+          <h2>Ready to submit?</h2>
+          <p>
+            Authors are invited to submit original and unpublished work through the NGCS 2027 submission system. When submitting, please select the FLTES 2027 workshop track. Questions can be sent to <a class="inline-link light" href="mailto:intelligent.systems2026@gmail.com">intelligent.systems2026@gmail.com</a>.
+          </p>
+        </div>
+        <a class="btn btn-warm" href="https://conferences.sparcly.ai/NGCS2027" target="_blank" rel="noopener noreferrer">Submit Paper</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      © 2027 International Workshop on Federated Learning Technologies and Emerging Systems (FLTES 2027). Organized with <a class="inline-link" href="../../index.php">NGCS 2027</a>.
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      document.body.classList.remove('no-js');
+      var btn = document.querySelector('.menu-btn');
+      var nav = document.getElementById('site-nav');
+      if (!btn || !nav) return;
+      btn.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+      });
+    })();
+  </script>
+</body>
+</html>
